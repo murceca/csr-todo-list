@@ -1,5 +1,5 @@
-import render from '/javascript/render.js';
-import { getTodoListId } from '/javascript/ui-helpers.js';
+import render from './render.js';
+import { getTodoListId } from './ui-helpers.js';
 
 let todoListCollection = [{
     "name": "Shopping list",
