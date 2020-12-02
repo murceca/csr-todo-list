@@ -2,3 +2,45 @@ body {
   padding: 1.5rem;
   background-color: rgb(243, 243, 243);
 }
+
+.custom-select {
+  width: 30%;
+}
+
+.json-title {
+  margin-bottom: 0.56rem;
+}
+
+.template-title {
+  margin-bottom: 0.56rem;
+}
+
+.create-todo-list-btn {
+  margin-bottom: 1em;
+}
+
+.todo-list + .todo-list {
+  margin-top: 1em;
+}
+
+.remove-todo-list-item, .remove-todo-list {
+  cursor: pointer;
+  font-size: 0.65rem;
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+input[type='checkbox'] {
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+.remove-todo-list-item:hover {
+  opacity: 0.7;
+}
+
+.code-block {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  padding: 0.5rem;
+  max-height: 16rem;
+}
