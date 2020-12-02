@@ -1,13 +1,8 @@
 const availableRenderingOptions = {
   ejs: {
     name: 'EJS',
-    file: '/templates/todo-list-collection.ejs',
+    file: '../templates/todo-list-collection.ejs',
     render: ejs.render
-  },
-  nunjucks: {
-    name: 'Nunjucks',
-    file: '/templates/todo-list-collection.nunjucks',
-    render: nunjucks.renderString
   }
 };
 
