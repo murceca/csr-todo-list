@@ -1,0 +1,87 @@
+<h1 class="text-center">To-Do lists Collection</h1>
+<hr>
+<div class="row">
+  <div class="col-12">
+    <button type="button"
+      class="create-todo-list-btn btn btn-dark mb-0"
+      data-action="create-todo-list">
+      Create new To-Do list
+    </button>
+    {% if not todoListCollection.length %}
+      <p class="h2">
+        There are no To-Do lists yet...
+      </p>
+    {% endif %}
+  </div>
+</div>
+<hr>
+
+{% for todoList in todoListCollection %}
+  <div class="todo-list row">
+    <div class="col-12">
+      <p class="h5">
+        To-do list's name:
+        <span class="text-muted" contenteditable="true"
+          data-todo-list-id="{{ loop.index0 }}"
+          data-model="todo-list-name">{{ todoList.name }}</span>
+        <span class="remove-todo-list" data-action="remove-todo-list">
+          &#10006;
+        </span>
+      </p>
+      {% if todoList.items.length %}
+        <p class="h5">
+          Items:
+        </p>
+      {% endif %}
+    </div>
+    <div class="todo-list-items col-12">
+      <div class="row">
+        {% for item in todoList.items %}
+          <div class="col-12">
+            <span contenteditable="true">{{ item.text }}</span>
+            <input {% if item.checked %}checked{% endif %}
+              type="checkbox">
+            <span class="remove-todo-list-item" data-action="remove-todo-list-item">
+              &#10006;
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="button"
+        class="create-todo-list-item-btn btn btn-dark mt-3"
+        data-todo-list-id="{{ loop.index0 }}"
+        data-action="create-todo-list-item">
+        New item
+      </button>
+    </div>
+  </div>
+  <hr>
+{% endfor %}
+
+<div class="row">
+  <div class="col-md-6">
+    <p class="h3 text-center json-title">
+      To-Do Lists JSON:
+      <button class="btn btn-dark save-json" data-model="save-json">Save</button>
+    </p>
+    <pre class="code-block"
+      contenteditable="true"
+      data-model="todo-list-collection-json">{{ todoListCollection | dump(2) }}</pre>
+  </div>
+  <div class="col-md-6">
+    <p class="h3 text-center template-title">
+      Rendering template:
+      <select class="custom-select" data-model="rendering-engine">
+        {% for option in renderingOptions %}
+          <option {% if option.isActive %}selected{% endif %}
+            value="{{ option.keyName }}">
+            {{ option.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </p>
+    <pre class="code-block">{{ template }}</pre>
+  </div>
+</div>
