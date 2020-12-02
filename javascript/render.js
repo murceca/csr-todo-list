@@ -6,7 +6,7 @@ const availableRenderingOptions = {
   },
   nunjucks: {
     name: 'Nunjucks',
-    file: '../public/todo-list-collection.nunjucks',
+    file: './templates/todo-list-collection.nunjucks',
     render: nunjucks.renderString
   }
 };
