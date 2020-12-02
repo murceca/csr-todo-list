@@ -1,7 +1,7 @@
 const availableRenderingOptions = {
   ejs: {
     name: 'EJS',
-    file: './javascript/todo-list-collection.ejs',
+    file: './templates/todo-list-collection.ejs',
     render: ejs.render
   },
   nunjucks: {
