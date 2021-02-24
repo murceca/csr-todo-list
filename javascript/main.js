@@ -1,43 +1,12 @@
+import storage from './storage.js';
 import render from './render.js';
 import { getTodoListId } from './ui-helpers.js';
 
-let todoListCollection = [{
-    "name": "Shopping list",
-    "items": [{
-      "text": "White shirt",
-      "checked": true
-    },
-    {
-      "text": "Buy wide hat",
-      "checked": false
-    }]
-  },
-  {
-    "name": "Grocery store",
-    "items": [{
-      "text": "Buy 2 bottles of milk",
-      "checked": false
-    },
-    {
-      "text": "Eggs",
-      "checked": false
-    }]
-  },
-  {
-    "name": "Plan for Wednesday",
-    "items": [{
-      "text": "English lesson",
-      "checked": false
-    }]
-  },
-  {
-    "name": "Home",
-    "items": []
-  }
-];
 let renderingEngine;
+const todoListCollection = storage.getData();
 
 const updateUI = () => {
+  storage.updateData(todoListCollection);
   render(todoListCollection, '#todo-list-collection-container', renderingEngine);
 };
 
