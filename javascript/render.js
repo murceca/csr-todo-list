@@ -13,7 +13,7 @@ const availableRenderingOptions = {
 
 /**
  * Returns information about available rendering options, and about the active one.
- * @param {String} activeRenderingEngine The name of the active rendering engine (e.g. "ejs", "nunjucks", etc).
+ * @param {string} activeRenderingEngine The name of the active rendering engine (e.g. "ejs", "nunjucks", etc).
  * @returns {Array} Information about available rendering options, and about the active one.
  */
 const collectRenderingOptionsInfo = (activeRenderingEngine) => {
@@ -32,8 +32,8 @@ const collectRenderingOptionsInfo = (activeRenderingEngine) => {
 /**
  * Renders the collection of the To-Do lists into the specified HTML container.
  * @param {Array} todoListCollection The collection of the To-Do lists.
- * @param {HTMLElement, String} container The HTML element, in which we should put all rendered To-Do lists.
- * @param {String} renderingEngine The name of the active rendering engine (e.g. "ejs", "nunjucks", etc).
+ * @param {HTMLElement, string} container The HTML element, in which we should put all rendered To-Do lists.
+ * @param {string} renderingEngine The name of the active rendering engine (e.g. "ejs", "nunjucks", etc).
  */
 const render = (todoListCollection, container, renderingEngine='ejs') => {
   const activeRenderingOption = availableRenderingOptions[renderingEngine];

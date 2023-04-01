@@ -3,13 +3,19 @@ import render from './render.js';
 import { getTodoListId } from './ui-helpers.js';
 
 let renderingEngine;
-const todoListCollection = storage.getData();
+let todoListCollection = storage.getData();
 
+/**
+ * Updates browsers storage and re-renders To-Do lists using selected template engine
+ */
 const updateUI = () => {
   storage.updateData(todoListCollection);
   render(todoListCollection, '#todo-list-collection-container', renderingEngine);
 };
 
+/**
+ * Adds events to DOM elements
+ */
 const attachEvents = () => {
   const $document = $(document);
 

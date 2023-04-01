@@ -1,3 +1,8 @@
+/**
+ * Retrieves To-Do lists data from browser's storage if it's not empty.
+ * Otherwise, returns default data.
+ * @returns {Array} An information about all To-Do lists and items.
+ */
 const getData = () => {
   let todoListCollection;
   try {
@@ -47,6 +52,10 @@ const getData = () => {
   return todoListCollection;
 };
 
+/**
+ * Updates data in browser's storage
+ * @param {Array} todoListCollection A collection of To-do lists.
+ */
 const updateData = (todoListCollection) => {
   try {
     localStorage.setItem('todoListCollection', JSON.stringify(todoListCollection));
