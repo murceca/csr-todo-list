@@ -11,5 +11,11 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+    },
+    "globals": {
+        "ejs": "readonly",
+        "nunjucks": "readonly",
+        "Handlebars": "readonly",
+        "$": "readonly"
     }
 }
