@@ -2,13 +2,15 @@
 <hr>
 <div class="row">
   <div class="col-12">
-    <button type="button" class="create-todo-list-btn btn btn-dark mb-0" data-action="create-todo-list">
+    <button type="button"
+      class="create-todo-list-btn btn btn-dark mb-0"
+      data-action="create-todo-list">
       Create new To-Do list
     </button>
     <% if (!todoListCollection.length) { %>
-    <p class="h2">
-      There are no To-Do lists yet...
-    </p>
+      <p class="h2">
+        There are no To-Do lists yet...
+      </p>
     <% } %>
   </div>
 </div>
@@ -45,7 +47,9 @@
     </div>
   </div>
   <div class="col-12">
-    <button type="button" class="create-todo-list-item-btn btn btn-dark mt-3" data-todo-list-id="<%= todoListId %>"
+    <button type="button" 
+      class="create-todo-list-item-btn btn btn-dark mt-3" 
+      data-todo-list-id="<%= todoListId %>"
       data-action="create-todo-list-item">
       New item
     </button>
