@@ -1,3 +1,5 @@
+import { initHandlebarsHelpers } from './ui-helpers.js';
+
 const availableRenderingOptions = {
   ejs: {
     name: 'EJS',
@@ -8,6 +10,15 @@ const availableRenderingOptions = {
     name: 'Nunjucks',
     file: './templates/todo-list-collection.nunjucks',
     render: nunjucks.renderString
+  },
+  handlebars: {
+    name: 'Handlebars',
+    file: './templates/todo-list-collection.hbs',
+    render: (templateString, data) => {
+      initHandlebarsHelpers();
+      const template = Handlebars.compile(templateString);
+      return template(data);
+    }
   }
 };
 

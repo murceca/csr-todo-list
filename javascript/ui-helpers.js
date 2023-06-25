@@ -7,6 +7,20 @@ const getTodoListId = ($element) => {
   return parseInt($element.data('todo-list-id'));
 };
 
+/**
+ * 
+ * @param {*} 
+ */
+const initHandlebarsHelpers = () => {
+  Handlebars.registerHelper('arrayLength', function (array) {
+    return array.length;
+  });
+  Handlebars.registerHelper('toJSON', function(object) {
+    return JSON.stringify(object, null, 2);
+  });
+};
+
 export {
-  getTodoListId
+  getTodoListId,
+  initHandlebarsHelpers
 };
