@@ -17,7 +17,6 @@ const updateUI = () => {
  * Adds events to DOM elements
  */
 const attachEvents = () => {
-
   document.addEventListener('click', function (event) {
     const target = event.target;
     const dataAction = target.getAttribute('data-action');
@@ -94,7 +93,7 @@ const attachEvents = () => {
   });
 };
 
-$(() => {
+document.addEventListener('readystatechange', () => {
   updateUI();
   attachEvents();
 });
