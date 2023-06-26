@@ -17,47 +17,80 @@ const updateUI = () => {
  * Adds events to DOM elements
  */
 const attachEvents = () => {
-  const $document = $(document);
 
-  $document.on('click', '[data-action="create-todo-list"]', () => {
-    todoListCollection.push({
-      name: 'New List',
-      items: []
-    });
-    updateUI();
+  document.addEventListener('click', function (event) {
+    const target = event.target;
+    const dataAction = target.getAttribute('data-action');
+    if (dataAction === 'create-todo-list') {
+      todoListCollection.push({
+        name: 'New List',
+        items: []
+      });
+      updateUI();
+    }
   });
 
-  $document.on('input', '[data-model="todo-list-name"]', function () {
-    const $todoListName = $(this);
-    const todoListId = getTodoListId($todoListName);
-    todoListCollection[todoListId].name = $todoListName.text();
+  document.addEventListener('input', function(event) {
+    const target = event.target;
+    const dataModel = target.getAttribute('data-model');
+    
+    if (dataModel === 'todo-list-name') {
+      const todoListName = target.textContent;
+      const todoListId = getTodoListId(target);
+      todoListCollection[todoListId].name = todoListName;
+    }
   });
 
-  $document.on('click', '[data-action="create-todo-list-item"]', function () {
-    const $createItemCta = $(this);
-    const todoListId = getTodoListId($createItemCta);
-    todoListCollection[todoListId].items.push({
-      text: 'New item',
-      checked: false
-    });
-    updateUI();
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    const dataAction = target.getAttribute('data-action');
+  
+    if (dataAction === 'create-todo-list-item') {
+      const createItemCta = target;
+      const todoListId = getTodoListId(createItemCta);
+      todoListCollection[todoListId].items.push({
+        text: 'New item',
+        checked: false
+      });
+      updateUI();
+    }
   });
 
-  $document.on('click', '[data-action="remove-todo-list"]', function () {
-    const $removeList = $(this);
-    $removeList.parent('.todo-list').remove();
-    updateUI();
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    const dataAction = target.getAttribute('data-action');
+    
+    if (dataAction === 'remove-todo-list') {
+      event.preventDefault();
+      const closestTodoList = target.closest('div.todo-list');
+      if (closestTodoList) {
+        closestTodoList.remove();
+        updateUI();
+      } else {
+        console.log('No todo list element found');
+      }
+    }
   });
 
-  // OnReview: Replace with the save button
-  $document.on('click', '[data-model="save-json"]', function () {
-    todoListCollection = JSON.parse($('[data-model="todo-list-collection-json"]').text());
-    updateUI();
+  document.addEventListener('click', function (event) {
+    const target = event.target;
+    const dataModel = target.getAttribute('data-model');
+
+    if (dataModel === 'save-json') {
+      const todoListCollectionJsonElement = document.querySelector('[data-model="todo-list-collection-json"]');
+      todoListCollection = JSON.parse(todoListCollectionJsonElement.innerText);
+      updateUI();
+    }
   });
 
-  $document.on('change', '[data-model="rendering-engine"]', function () {
-    renderingEngine = $(this).val();
-    updateUI();
+  document.addEventListener('change', function (event) {
+    const target = event.target;
+    const dataModel = target.getAttribute('data-model');
+
+    if (dataModel === 'rendering-engine') {
+      renderingEngine = event.target.value;
+      updateUI();
+    }
   });
 };
 
