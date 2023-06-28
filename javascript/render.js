@@ -48,13 +48,18 @@ const collectRenderingOptionsInfo = (activeRenderingEngine) => {
  */
 const render = (todoListCollection, container, renderingEngine='ejs') => {
   const activeRenderingOption = availableRenderingOptions[renderingEngine];
-  $.get(activeRenderingOption.file, (template) => {
-    const html = activeRenderingOption.render(template, {
-      todoListCollection,
-      template,
-      renderingOptions: collectRenderingOptionsInfo(renderingEngine)
-    });
-    $(container).html(html);
+  fetch(activeRenderingOption.file)
+    .then(response => response.text())
+    .then(template => {
+      const html = activeRenderingOption.render(template, {
+        todoListCollection,
+        template,
+        renderingOptions: collectRenderingOptionsInfo(renderingEngine)
+      });
+      document.querySelector(container).innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error fetching template:', error);
   });
 };
 
