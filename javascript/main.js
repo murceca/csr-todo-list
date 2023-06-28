@@ -57,13 +57,13 @@ const attachEvents = () => {
 
   document.addEventListener('click', function(event) {
     const target = event.target;
+    let prevSibling = target.previousElementSibling;
     const dataAction = target.getAttribute('data-action');
-    
     if (dataAction === 'remove-todo-list') {
-      event.preventDefault();
-      const closestTodoList = target.closest('div.todo-list');
+      const closestTodoList = target.closest('.todo-list');
+      const todoListId = getTodoListId(prevSibling);
       if (closestTodoList) {
-        closestTodoList.remove();
+        todoListCollection.splice(todoListId, 1);
         updateUI();
       } else {
         console.log('No todo list element found');
