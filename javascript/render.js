@@ -49,17 +49,23 @@ const collectRenderingOptionsInfo = (activeRenderingEngine) => {
 const render = (todoListCollection, container, renderingEngine='ejs') => {
   const activeRenderingOption = availableRenderingOptions[renderingEngine];
   fetch(activeRenderingOption.file)
-    .then(response => response.text())
-    .then(template => {
-      const html = activeRenderingOption.render(template, {
-        todoListCollection,
-        template,
-        renderingOptions: collectRenderingOptionsInfo(renderingEngine)
-      });
-      document.querySelector(container).innerHTML = html;
+    .then(async response => {
+      if (response?.ok) {
+        const template = await response.text();
+        const html = activeRenderingOption.render(template, {
+          todoListCollection,
+          template,
+          renderingOptions: collectRenderingOptionsInfo(renderingEngine)
+        });
+        document.querySelector(container).innerHTML = html;
+      } else {
+        console.error(`Can't fetch the "${activeRenderingOption.file}" template!`);
+      }
     })
     .catch(error => {
-      console.error('Error fetching template:', error);
+      console.error(
+        `Error during fetching the "${activeRenderingOption.file}" template: ${error}`
+      );
   });
 };
 
