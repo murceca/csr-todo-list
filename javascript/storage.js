@@ -18,12 +18,12 @@ const getData = () => {
     todoListCollection = [{
       name: 'Shopping list',
       items: [{
-          text: 'White shirt',
-          checked: true
+        text: 'White shirt',
+        checked: true
       },
       {
-      text: 'Buy wide hat',
-      checked: false
+        text: 'Buy wide hat',
+        checked: false
       }]
     },
     {
