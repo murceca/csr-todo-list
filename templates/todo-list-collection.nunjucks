@@ -41,7 +41,9 @@
             <span contenteditable="true">{{ item.text }}</span>
             <input {% if item.checked %}checked{% endif %}
               type="checkbox">
-            <span class="remove-todo-list-item" data-action="remove-todo-list-item">
+            <span class="remove-todo-list-item"
+                  data-action="remove-todo-list-item"
+                  data-todo-list-item-id="{{ loop.index0 }}">
               &#10006;
             </span>
           </div>

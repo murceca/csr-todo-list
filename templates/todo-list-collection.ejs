@@ -35,11 +35,13 @@
   </div>
   <div class="todo-list-items col-12">
     <div class="row">
-      <% todoList.items.forEach((item) => { %>
+      <% todoList.items.forEach((item, index) => { %>
       <div class="col-12">
         <span contenteditable="true"><%= item.text %></span>
         <input <% if (item.checked) { %>checked<% } %> type="checkbox">
-        <span class="remove-todo-list-item" data-action="remove-todo-list-item">
+        <span class="remove-todo-list-item" 
+              data-action="remove-todo-list-item"
+              data-todo-list-item-id="<%= index %>">
           &#10006;
         </span>
       </div>

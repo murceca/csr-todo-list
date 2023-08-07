@@ -40,7 +40,9 @@
             <span contenteditable="true">{{text}}</span>
             <input {{#if checked}}checked{{/if}}
               type="checkbox">
-            <span class="remove-todo-list-item" data-action="remove-todo-list-item">
+            <span class="remove-todo-list-item"
+                  data-action="remove-todo-list-item"
+                  data-todo-list-item-id="{{@index}}">
               &#10006;
             </span>
           </div>
