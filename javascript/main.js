@@ -74,6 +74,19 @@ const attachEvents = () => {
 
   document.addEventListener('click', function (event) {
     const target = event.target;
+    const closestTodoList = target.closest('div.todo-list');
+    const todoListIdElement = closestTodoList.querySelector('[data-todo-list-id]');
+    const dataAction = target.getAttribute('data-action');
+    if (dataAction === 'remove-todo-list-item') {
+      const todoListId = getTodoListId(todoListIdElement);
+      const itemId = target.dataset.todoListItemId;
+      todoListCollection[todoListId].items.splice(itemId, 1);
+      updateUI();
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+    const target = event.target;
     const dataModel = target.getAttribute('data-model');
 
     if (dataModel === 'save-json') {
