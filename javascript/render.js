@@ -19,6 +19,15 @@ const availableRenderingOptions = {
       const template = Handlebars.compile(templateString);
       return template(data);
     }
+  },
+  pug: {
+    name: 'Pug',
+    file: './templates/todo-list-collection.pug',
+    render: (templateString, data) => {
+      const pug = require('pug');
+      const template = pug.compile(templateString);
+      return template(data);
+    }
   }
 };
 

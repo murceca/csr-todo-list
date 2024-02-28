@@ -1,0 +1,43 @@
+h1.text-center To-Do lists Collection
+hr
+.row
+  .col-12
+    button.create-todo-list-btn.btn.btn-dark.mb-0(data-action="create-todo-list") Create new To-Do list
+    if !todoListCollection.length
+      p.h2 There are no To-Do lists yet...
+hr
+
+each todoList, todoListId in todoListCollection
+  .todo-list.row
+    .col-12
+      p.h5
+        | To-do list's name:
+        span.text-muted(contenteditable="true", data-todo-list-id=todoListId, data-model="todo-list-name")= todoList.name
+        span.remove-todo-list(data-action="remove-todo-list") &#10006;
+      if todoList.items.length
+        p.h5 Items:
+    .todo-list-items.col-12
+      .row
+        each item, index in todoList.items
+          .col-12
+            span(contenteditable="true")= item.text
+            input(type="checkbox", checked=item.checked)
+            span.remove-todo-list-item(data-action="remove-todo-list-item", data-todo-list-item-id=index) &#10006;
+    .col-12
+      button.create-todo-list-item-btn.btn.btn-dark.mt-3(data-todo-list-id=todoListId, data-action="create-todo-list-item") New item
+hr
+
+.row
+  .col-md-6
+    p.h3.text-center.json-title
+      | To-Do Lists JSON:
+      button.save-json.btn.btn-dark(data-model="save-json") Save
+    pre.code-block(contenteditable="true", data-model="todo-list-collection-json")
+      | #{JSON.stringify(todoListCollection, null, 2)}
+  .col-md-6
+    p.h3.text-center.template-title
+      | Rendering template:
+      select.custom-select(data-model="rendering-engine")
+        each option in renderingOptions
+          option(value=option.keyName, selected=option.isActive)= option.name
+    pre.code-block #{template}
